@@ -5,7 +5,7 @@ import java.util.UUID;
 public class TimeBasedUUIDKey {
 
     private UUID uuid;
-    private byte[] key;
+    private byte[] key; //16 bytes array.
 
     public TimeBasedUUIDKey(UUID uuid) {
         this.uuid = uuid;
@@ -25,13 +25,14 @@ public class TimeBasedUUIDKey {
     }
 
     private String generateKey() {
-        String uuidString = getUUID().toString().toLowerCase();
-        String orderedUUIDString = uuidString.substring(14, 18)
-                + uuidString.substring(9, 13)
-                + uuidString.substring(0, 8)
-                + uuidString.substring(19, 23)
-                + uuidString.substring(24);
-        return orderedUUIDString;
+        String uuidString = getUUID().toString();
+        StringBuilder str = new StringBuilder();
+        str.append(uuidString.substring(14, 18));
+        str.append(uuidString.substring(9, 13));
+        str.append(uuidString.substring(0, 8));
+        str.append(uuidString.substring(19, 23));
+        str.append(uuidString.substring(24));
+        return str.toString();
     }
 
     public byte[] getKey() {
