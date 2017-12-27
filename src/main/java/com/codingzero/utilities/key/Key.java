@@ -19,16 +19,16 @@ public class Key {
         return new Hex(getKey()).getText();
     }
 
+    public String toBase64String(boolean isUrlSafe) {
+        if (isUrlSafe) {
+            return new String(Base64.getUrlEncoder().encode(getKey()));
+        }
+        return new String(Base64.getEncoder().encode(getKey()));
+    }
+
     @Override
     public String toString() {
         return new String(getKey());
-    }
-
-    public Key toBase64(boolean isUrlSafe) {
-        if (isUrlSafe) {
-            return fromBytes(Base64.getUrlEncoder().encode(getKey()));
-        }
-        return fromBytes(Base64.getEncoder().encode(getKey()));
     }
 
     public Key toHMACKey(HMACKey.Algorithm algorithm) {
