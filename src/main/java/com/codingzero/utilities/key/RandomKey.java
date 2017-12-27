@@ -9,8 +9,7 @@ public class RandomKey {
 
     public static Key nextUUIDKey() {
         UUID uuid = UUID.randomUUID();
-        Key key = Key.fromBytes(convertUUIDToBytes(uuid));
-        return Key.fromString(key.toString().replace("=", "").toLowerCase());
+        return Key.fromBytes(convertUUIDToBytes(uuid));
     }
 
     private static byte[] convertUUIDToBytes(UUID uuid) {
